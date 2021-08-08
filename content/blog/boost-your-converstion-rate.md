@@ -1,8 +1,8 @@
 ---
 template: blog-post
-title: Boost your conversion rate
+title: What is Going On
 publishedDate: 2020-08-12T16:02:46.329Z
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
   eiusmod tempor incididunt ut labore et dolore magna aliqua.
 featured: true
 img: ../../static/images/beach-seagull.jpeg
