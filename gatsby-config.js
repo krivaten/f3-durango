@@ -1,7 +1,7 @@
-const siteName = "Sample Blog";
-const siteShortName = "Sample Blog";
+const siteName = "F3 Durango";
+const siteShortName = "F3 Durango";
 const siteUrl = "https://geek.sg/";
-const siteDescription = "Sample blog template";
+const siteDescription = "Fitness • Fellowship • Faith";
 const siteKeyword = "";
 const siteLogo = "logo.png";
 const siteLogoFolder = `static/${siteLogo}`;
@@ -53,8 +53,15 @@ module.exports = {
         ],
       },
     },
+    "gatsby-plugin-image",
     "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        failOnError: true,
+        defaultQuality: 80,
+      },
+    },
     {
       resolve: "gatsby-plugin-manifest",
       options: {
