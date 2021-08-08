@@ -6,14 +6,7 @@ export interface PostList {
   posts: PostSnippet[];
 }
 
-export const PostListItem: FunctionComponent<PostSnippet> = ({
-  href,
-  img,
-  imgAlt,
-  title,
-  tags,
-  summary,
-}) => {
+export const PostListItem: FunctionComponent<PostSnippet> = ({ href, img, imgAlt, title, tags, summary }) => {
   return (
     <div className="flex mb-16 sm:mb-28 flex-col sm:flex-row">
       <div className="flex-shrink-0 mr-0 sm:mr-8 mb-6 sm:mb-0">
@@ -28,9 +21,7 @@ export const PostListItem: FunctionComponent<PostSnippet> = ({
       <div className="flex-1 flex flex-col justify-between">
         <div className="block">
           <a href={href}>
-            <h3 className="mb-2 text-xl leading-7 font-semibold text-gray-900">
-              {title}
-            </h3>
+            <h3 className="mb-2 text-xl leading-7 font-semibold text-gray-900">{title}</h3>
           </a>
           <div className="text-sm leading-5 font-medium text-indigo-600">
             {tags.map((tag, index) => (

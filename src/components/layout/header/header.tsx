@@ -1,4 +1,5 @@
 import React, { useState, FunctionComponent } from "react";
+import Logo from "../../icons/Logo";
 
 export interface DropdownItem {
   label: string;
@@ -21,13 +22,9 @@ export type MenuItem = MenuItemWithDropdown | MenuItemWithoutDropdown;
 
 export interface Header {
   menuItems: MenuItem[];
-  logo: JSX.Element;
 }
 
-export const FlyoutMenu: FunctionComponent<MenuItemWithDropdown> = ({
-  label,
-  dropdownItems,
-}) => {
+export const FlyoutMenu: FunctionComponent<MenuItemWithDropdown> = ({ label, dropdownItems }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleIsOpen = () => setIsOpen(!isOpen);
 
@@ -58,29 +55,21 @@ export const FlyoutMenu: FunctionComponent<MenuItemWithDropdown> = ({
           isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"
         } transition ease-in duration-150 absolute -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2`}
       >
-        <div className="rounded-lg shadow-lg">
-          <div className="rounded-lg shadow-xs overflow-hidden">
-            <div className="z-20 relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-              {dropdownItems.map(
-                ({ label: text, description, href, icon }, index) => (
-                  <a
-                    key={index}
-                    href={href}
-                    className="-m-3 p-3 flex items-start space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150"
-                  >
-                    {icon}
-                    <div className="space-y-1">
-                      <p className="text-base leading-6 font-medium text-gray-900">
-                        {text}
-                      </p>
-                      <p className="text-sm leading-5 text-gray-500">
-                        {description}
-                      </p>
-                    </div>
-                  </a>
-                )
-              )}
-            </div>
+        <div className="rounded-lg shadow-lg overflow-hidden">
+          <div className="z-20 relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+            {dropdownItems.map(({ label: text, description, href, icon }, index) => (
+              <a
+                key={index}
+                href={href}
+                className="-m-3 p-3 flex items-start space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150"
+              >
+                {icon}
+                <div className="space-y-1">
+                  <p className="text-base leading-6 font-medium text-gray-900">{text}</p>
+                  <p className="text-sm leading-5 text-gray-500">{description}</p>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </div>
@@ -88,10 +77,7 @@ export const FlyoutMenu: FunctionComponent<MenuItemWithDropdown> = ({
   );
 };
 
-export const MobileFlyoutMenu: FunctionComponent<MenuItemWithDropdown> = ({
-  label,
-  dropdownItems,
-}) => {
+export const MobileFlyoutMenu: FunctionComponent<MenuItemWithDropdown> = ({ label, dropdownItems }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleIsOpen = () => setIsOpen(!isOpen);
 
@@ -125,33 +111,29 @@ export const MobileFlyoutMenu: FunctionComponent<MenuItemWithDropdown> = ({
             href={href}
             className="-m-3 pl-6 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"
           >
-            <div className="text-base leading-6 font-medium text-gray-900">
-              {text}
-            </div>
+            <div className="text-base leading-6 font-medium text-gray-900">{text}</div>
           </a>
         ))}
     </>
   );
 };
 
-const isMenuItemWithDropdown = (
-  menuItem: MenuItem
-): menuItem is MenuItemWithDropdown => {
+const isMenuItemWithDropdown = (menuItem: MenuItem): menuItem is MenuItemWithDropdown => {
   return (menuItem as MenuItemWithDropdown).dropdownItems !== undefined;
 };
 
-export const Header: FunctionComponent<Header> = ({ menuItems, logo }) => {
+export const Header: FunctionComponent<Header> = ({ menuItems }) => {
   const [mobileDrawerOn, setMobileDrawerOn] = useState(false);
   const toggleMobileDrawer = () => {
     setMobileDrawerOn(!mobileDrawerOn);
   };
   return (
-    <div className="relative bg-white">
+    <div className="relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+        <div className="flex justify-between items-center border-b-1 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div className="lg:w-0 lg:flex-1">
             <a href="/" className="flex">
-              {logo}
+              <Logo width={60} height={60} className="fill-current" />
             </a>
           </div>
           <div className="-mr-2 -my-2 md:hidden">
@@ -160,18 +142,8 @@ export const Header: FunctionComponent<Header> = ({ menuItems, logo }) => {
               type="button"
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
           </div>
@@ -198,33 +170,25 @@ export const Header: FunctionComponent<Header> = ({ menuItems, logo }) => {
         >
           <div className="rounded-lg shadow-lg">
             <div className="rounded-lg shadow-xs bg-white divide-y-2 divide-gray-50">
-              <div className="pt-5 pb-6 px-5 space-y-6">
+              <div className="pt-4 pb-6 px-2 space-y-6">
                 <div className="flex items-center justify-between">
-                  <div>{logo}</div>
+                  <div>
+                    <Logo width={60} height={60} className="fill-current" />
+                  </div>
                   <div className="-mr-2">
                     <button
                       onClick={toggleMobileDrawer}
                       type="button"
                       className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
                     >
-                      <svg
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M6 18L18 6M6 6l12 12"
-                        />
+                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </button>
                   </div>
                 </div>
                 <div>
-                  <nav className="grid row-gap-8">
+                  <nav className="grid row-gap-8 px-2">
                     {menuItems.map((menuItem, index) =>
                       isMenuItemWithDropdown(menuItem) ? (
                         <MobileFlyoutMenu {...menuItem} key={index} />
@@ -234,9 +198,7 @@ export const Header: FunctionComponent<Header> = ({ menuItems, logo }) => {
                           href={menuItem.href}
                           className="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"
                         >
-                          <div className="text-base leading-6 font-medium text-gray-900">
-                            {menuItem.label}
-                          </div>
+                          <div className="text-base leading-6 font-medium text-gray-900">{menuItem.label}</div>
                         </a>
                       )
                     )}
